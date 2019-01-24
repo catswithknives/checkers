@@ -25,7 +25,7 @@ public class chechpoi {
 
 	private JFrame frame;
 	private JTextField txtfWinner;
-
+	private String mover;
 	/**
 	 * Launch the application.
 	 */
@@ -53,11 +53,11 @@ public class chechpoi {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		
+
+
 		ArrayList<JLabel> nPieces = new ArrayList<JLabel>(12);	
-		
-		
+
+
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(160, 82, 45));
 		frame.setForeground(new Color(139, 69, 19));
@@ -71,7 +71,8 @@ public class chechpoi {
 		lblSpace1.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		lblSpace1.setBackground(Color.BLUE);
 		//lblSpace1.setForeground(new Color(135, 206, 250));
-		lblSpace1.setBounds(35, 202, 35, 35);
+		lblSpace1.setBounds(331, 161, 35, 35);
+		lblSpace1.setVisible(false);
 		frame.getContentPane().add(lblSpace1);
 
 		JLabel lblSpace2 = new JLabel(" []");
@@ -80,7 +81,26 @@ public class chechpoi {
 		lblSpace2.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		lblSpace2.setBackground(Color.BLUE);
 		lblSpace2.setBounds(331, 161, 35, 35);
+		lblSpace2.setVisible(false);
 		frame.getContentPane().add(lblSpace2);
+
+		JLabel lblSpace3 = new JLabel(" []");
+		lblSpace3.setIcon(new ImageIcon("M:\\Downloads\\blue.png"));
+		lblSpace3.setForeground(Color.BLUE);
+		lblSpace3.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lblSpace3.setBackground(Color.BLUE);
+		lblSpace3.setBounds(331, 161, 35, 35);
+		lblSpace3.setVisible(false);
+		frame.getContentPane().add(lblSpace3);
+
+		JLabel lblSpace4 = new JLabel(" []");
+		lblSpace4.setIcon(new ImageIcon("M:\\Downloads\\blue.png"));
+		lblSpace4.setForeground(Color.BLUE);
+		lblSpace4.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lblSpace4.setBackground(Color.BLUE);
+		lblSpace4.setBounds(331, 161, 35, 35);
+		lblSpace4.setVisible(false);
+		frame.getContentPane().add(lblSpace4);
 
 		JLabel lblwhite1 = new JLabel("");
 		lblwhite1.setIcon(new ImageIcon("M:\\Downloads\\Downloads\\white pieces.jpg"));
@@ -209,7 +229,7 @@ public class chechpoi {
 		frame.getContentPane().add(lblBackground);
 
 		JButton btnNewButton = new JButton("Start");
-		
+
 		btnNewButton.setFont(new Font("Rockwell", Font.BOLD | Font.ITALIC, 14));
 		btnNewButton.setBounds(106, 399, 200, 35);
 		frame.getContentPane().add(btnNewButton);
@@ -241,10 +261,11 @@ public class chechpoi {
 		frame.getContentPane().add(label);
 
 		player starter = null;
-
+	
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				nPiece starter = new nPiece();
+				wPiece starter = new wPiece();
 				String[][] Grid = new String[8][8];
 				nPieces.add(lblBlack1);
 				Grid[0][0]=("Black");
@@ -294,34 +315,43 @@ public class chechpoi {
 				Grid[5][7]=("White");
 				nPieces.add(lblwhite12);
 				Grid[7][7]=("White");
-				
-				
+				Grid[2][4]=("Black");
+				Grid[0][4]=("Black");
+
 				starter.createArray(nPieces,Grid);
 			}
 		});
 		
-		//add a mouselistener instead and listen to mouse clicks
-		lblBackground.addMouseListener(new MouseAdapter() {
+		lblSpace1.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("Yay you clicked me");
+			}
+
+		});
+		lblSpace2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				
+			}
+
+		});
+		lblSpace3.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("Yay you clicked me");
+			}
+
+		});
+		lblSpace4.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("Yay you clicked me");
 			}
 
 		});
 		lblwhite1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				
-				//System.out.println(lblwhite1.getX() + ","+ lblwhite1.getY());
-				nPiece p1 = new nPiece();
-				p1.setX(lblwhite1.getX());
-				p1.setY(lblwhite1.getY());
-				String t=p1.testpoi(1, 7);
+				wPiece p1 = new wPiece();
+				String t=p1.checkUL(1, 7);
 				System.out.println(t);
-					//
-				
-				//System.out.println(p1.canMoveUL());
-				//System.out.println(p1.canMoveUR());
 			}
-
 		});
 		lblwhite2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -343,7 +373,10 @@ public class chechpoi {
 		});
 		lblwhite5.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("Yay you clicked me");
+				wPiece p1 = new wPiece();
+				String t=p1.checkUL(0, 6);
+				System.out.println(t);
+
 			}
 
 		});
@@ -355,7 +388,10 @@ public class chechpoi {
 		});
 		lblwhite7.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("Yay you clicked me");
+				wPiece p1 = new wPiece();
+
+				String t=p1.checkUL(0, 6);
+				System.out.println(t);
 			}
 
 		});
@@ -367,7 +403,52 @@ public class chechpoi {
 		});
 		lblwhite9.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("Yay you clicked me");
+				mover = "White 9";
+				wPiece p1 = new wPiece();
+
+
+				String UL=p1.checkUL(1, 5);
+				if (p1.checkUL(1, 5) == "canMove"){
+					lblSpace1.setLocation(lblwhite9.getX()-42, lblwhite9.getY()-42);
+					lblSpace1.setVisible(true);
+				}
+				if (p1.checkUL(1, 5) == "canJump"){
+					lblSpace1.setLocation(lblwhite9.getX()-84, lblwhite9.getY()-84);
+					lblSpace1.setVisible(true);
+				}
+				String UR=p1.checkUR(1, 5);
+				if (p1.checkUR(1, 5) == "canMove"){
+					lblSpace2.setLocation(lblwhite9.getX()+42, lblwhite9.getY()-42);
+					lblSpace2.setVisible(true);
+				}
+				if (p1.checkUR(1, 5) == "canJump"){
+					lblSpace2.setLocation(lblwhite9.getX()+84, lblwhite9.getY()-84);
+					lblSpace2.setVisible(true);
+				}
+
+				String DL=p1.checkDL(1, 5);
+				if (p1.checkDL(1, 5) == "canMove"){
+					lblSpace3.setLocation(lblwhite9.getX()-42, lblwhite9.getY()+42);
+					lblSpace3.setVisible(true);
+				}
+				if (p1.checkDL(1, 5) == "canJump"){
+					lblSpace3.setLocation(lblwhite9.getX()-84, lblwhite9.getY()+84);
+					lblSpace3.setVisible(true);
+				}
+
+				String DR=p1.checkDR(1, 5);
+				if (p1.checkDR(1, 5) == "canMove"){
+					lblSpace4.setLocation(lblwhite9.getX()+42, lblwhite9.getY()+42);
+					lblSpace4.setVisible(true);
+				}
+				if (p1.checkDR(1, 5) == "canJump"){
+					lblSpace4.setLocation(lblwhite9.getX()+84, lblwhite9.getY()+84);
+					lblSpace4.setVisible(true);
+				}
+				System.out.println(UL);
+				System.out.println(UR);
+				System.out.println(DL);
+				System.out.println(DR);
 			}
 
 		});
@@ -391,7 +472,7 @@ public class chechpoi {
 		});
 		lblBlack1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("Yay you clicked me");
+				System.out.println("");
 			}
 
 		});
@@ -469,9 +550,15 @@ public class chechpoi {
 		});
 		lblSpace2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("Yay you clicked me");
+				System.out.println("");
 			}
 
 		});
 	}
+	public void checker(){
+		if (mover == "White1")
+			ret
+	}
+
+	
 }
